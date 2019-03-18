@@ -24,6 +24,7 @@ namespace algo {
         Node* InsertAfter(const Node& node, const T& d);
         Node* InsertBefore(const Node& node, const T& d);
 
+        bool IsEmpty() const;
         bool Delete(const T& d);
         bool DeleteAll();
 
@@ -40,7 +41,6 @@ namespace algo {
 
         // 是否包含环
         bool IsContainLoop() const;
-
 
         Iterator Begin();
         Iterator Begin() const;
@@ -117,6 +117,12 @@ namespace algo {
         DeleteAll();
         DeallocateNode(guard_);
         guard_ = nullptr;
+    }
+
+    template <class T>
+    bool LinkList<T>::IsEmpty() const
+    {
+        return guard_->next == nullptr;
     }
 
     template <class T>

@@ -168,5 +168,4 @@ namespace algo {
         return !(*this == obj);
     }
 }
-
 /* EOF */

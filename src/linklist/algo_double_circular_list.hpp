@@ -20,6 +20,7 @@ namespace algo {
         DoubleCircularList();
         ~DoubleCircularList();
 
+        bool  IsEmpty() const;
         Node* InsertTail(const T& v);
         Node* InsertHead(const T& v);
         Node* InsertAfter(Node& node, const T& v);
@@ -123,6 +124,12 @@ namespace algo {
     {
         DeleteAll();
         DeleteHeadNode();
+    }
+
+    template <class T>
+    bool DoubleCircularList<T>::IsEmpty() const
+    {
+        return guard_->next == guard_;
     }
 
     template <class T>
