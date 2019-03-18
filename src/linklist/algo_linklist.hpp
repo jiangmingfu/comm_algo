@@ -7,24 +7,13 @@
 #ifndef __ALGO_LINKLIST_HPP__
 #define __ALGO_LINKLIST_HPP__
 
-#include <set>
 #include "algo_allocator.h"
 
 namespace algo {
     template <class T>
     class LinkList {
     public:
-        struct Node {
-            T     d;
-            Node* next;
-
-            Node()
-            : d(T())
-            , next(nullptr)
-            {}
-        };
-
-    public:
+        struct Node;
         class Iterator;
 
         LinkList();
@@ -40,9 +29,18 @@ namespace algo {
 
         Node* Find(const T& d) const;
 
-        bool Reserve();
+        // 获取反向第k个节点
+        Node* GetReserveNThNode(std::size_t k) const;
+
+        // 获取中间节点
+        Node* GetMiddleNode() const;
+
+        // 链表倒置
+        bool Reverse();
+
+        // 是否包含环
         bool IsContainLoop() const;
-        bool IsPalindrome();
+
 
         Iterator Begin();
         Iterator Begin() const;
@@ -50,49 +48,61 @@ namespace algo {
         Iterator End();
         Iterator End() const;
 
-        class Iterator {
-        public:
-            Iterator(Node* node)
-            : cursor_(node)
-            {}
-
-            ~Iterator() = default;
-
-            T& operator * ()
-            {
-                return cursor_->d;
-            }
-
-            const T& operator * () const
-            {
-                return cursor_->d;
-            }
-
-            void operator ++ ()
-            {
-                cursor_ = cursor_->next;
-            }
-
-            bool operator == (const Iterator& obj) const
-            {
-                return cursor_ == obj.cursor_;
-            }
-
-            bool operator != (const Iterator& obj) const
-            {
-                return cursor_ != obj.cursor_;
-            }
-
-        private:
-            Node* cursor_;
-        };
-
     protected:
         Node* AllocateNode(const T& d);
         void  DeallocateNode(Node* node);
 
     private:
         Node* guard_;
+    };
+
+    template <class T>
+    struct LinkList<T>::Node {
+        T     d;
+        Node* next;
+
+        Node()
+        : d(T())
+        , next(nullptr)
+        {}
+    };
+
+    template <class T>
+    class LinkList<T>::Iterator {
+    public:
+        Iterator(Node* node)
+                : cursor_(node)
+        {}
+
+        ~Iterator() = default;
+
+        T& operator * ()
+        {
+            return cursor_->d;
+        }
+
+        const T& operator * () const
+        {
+            return cursor_->d;
+        }
+
+        void operator ++ ()
+        {
+            cursor_ = cursor_->next;
+        }
+
+        bool operator == (const Iterator& obj) const
+        {
+            return cursor_ == obj.cursor_;
+        }
+
+        bool operator != (const Iterator& obj) const
+        {
+            return cursor_ != obj.cursor_;
+        }
+
+    private:
+        Node* cursor_;
     };
 
     template <class T>
@@ -199,7 +209,47 @@ namespace algo {
     }
 
     template <class T>
-    bool LinkList<T>::Reserve()
+    typename LinkList<T>::Node* LinkList<T>::GetReserveNThNode(std::size_t k) const
+    {
+        std::size_t i = 0;
+
+        Node* cursor = guard_->next;
+
+        while(cursor != nullptr) {
+            if (i == k) {
+                break;
+            }
+
+            ++i;
+            cursor = cursor->next;
+        }
+
+        if (cursor == nullptr) {
+            return nullptr;
+        }
+
+        Node* result = guard_->next;
+        while(cursor->next != nullptr) {
+            cursor = cursor->next;
+            result = result->next;
+        }
+        return result;
+    }
+
+    template <class T>
+    typename LinkList<T>::Node* LinkList<T>::GetMiddleNode() const
+    {
+        Node* slow = guard_->next;
+        Node* fast = guard_->next;
+        while (fast->next && fast->next->next) {
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        return slow;
+    }
+
+    template <class T>
+    bool LinkList<T>::Reverse()
     {
         Node* p = guard_->next;
         guard_->next = nullptr;
@@ -216,28 +266,20 @@ namespace algo {
     template <class T>
     bool LinkList<T>::IsContainLoop() const
     {
-        std::set<void*> visits;
+        Node* slow = guard_;
+        Node* fast = guard_;
 
-        Node* p = guard_->next;
-        while (p != nullptr) {
-            if (visits.count((void*)p) > 0) {
+        while (fast->next && fast->next->next) {
+            fast = fast->next->next;
+            slow = slow->next;
+
+            if (fast == slow) {
                 return true;
             }
-            visits.insert((void*)p);
-            p = p->next;
         }
         return false;
     }
 
-    template <class T>
-    bool LinkList<T>::IsPalindrome()
-    {
-        Node* slow = guard_;
-        Node* fast = guard_;
-
-
-        return false;
-    }
 
     template <class T>
     typename LinkList<T>::Iterator LinkList<T>::Begin()

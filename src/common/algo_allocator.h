@@ -11,9 +11,7 @@
 
 namespace algo {
 
-    /*
-     * @brief memory allocate
-     */
+    //  memory allocate
     class Allocator {
     public:
         static void* AllocateMem(std::size_t obj_num, std::size_t each_size_in_byte);
