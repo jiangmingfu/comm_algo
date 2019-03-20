@@ -2,6 +2,7 @@
 #include "algo_bitmap.h"
 #include "algo_linklist.hpp"
 #include "algo_double_circular_list.hpp"
+#include "algo_merge_sort.hpp"
 
 int main()
 {
@@ -37,6 +38,14 @@ int main()
         ++it2;
     }
     printf("\n");
+
+    int d[] = {56, 23, 54, 23, 1, 67, 90, 21, 33};
+    algo::MergeSort(d, sizeof(d)/sizeof(d[0]));
+    for (int i = 0; i < sizeof(d)/sizeof(d[0]); ++i) {
+        printf("%d ", d[i]);
+    }
+    printf("\n");
+
     return 0;
 }
 /* EOF */
