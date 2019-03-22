@@ -27,6 +27,7 @@ namespace algo {
 
         void Put(const K& k, const V& v);
         bool Get(const K& k, V& v);
+        bool Exist(const K& k) const;
         bool Erase(const K& k);
         void ClearAll();
         std::size_t Size() const;
@@ -115,6 +116,12 @@ namespace algo {
 
         data_.clear();
         map_.clear();
+    }
+
+    template <class K, class V>
+    bool LRUCache<K, V>::Exist(const K& k) const
+    {
+        return map_.count(k) > 0;
     }
 
     template <class K, class V>
