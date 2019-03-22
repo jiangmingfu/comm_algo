@@ -11,7 +11,7 @@ namespace algo {
     template <class T>
     class LockFreeCircleQueue {
     public:
-        
+
     };
 }
 #endif // __ALGO_LOCK_FREE_QUEUE_HPP__

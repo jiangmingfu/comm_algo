@@ -1,8 +1,14 @@
 #include <stdio.h>
+
+#include <list>
+#include <string>
+#include <stdint.h>
+
 #include "algo_bitmap.h"
 #include "algo_linklist.hpp"
 #include "algo_double_circular_list.hpp"
 #include "algo_merge_sort.hpp"
+#include "algo_lru_cache.hpp"
 
 int main()
 {
@@ -45,6 +51,24 @@ int main()
         printf("%d ", d[i]);
     }
     printf("\n");
+
+    algo::LRUCache<std::string, int > cache(5);
+
+    cache.Put("one", 1);
+    cache.Put("two", 2);
+    cache.Put("three", 3);
+    cache.Put("four", 4);
+    cache.Put("five", 5);
+
+    cache.Put("six", 6);
+
+    int v;
+    if (cache.Get("one", v)) {
+        printf("one: %d\n", v);
+    }
+    else {
+        printf("one: not found .\n");
+    }
 
     return 0;
 }
