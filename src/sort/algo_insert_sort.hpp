@@ -10,22 +10,22 @@
 #include <functional>
 
 namespace algo {
-    template <class T, class Cmp = std::greater<>>
+    template <class T, class Cmp = std::greater<T> >
     void InsertSort(T* data, int32_t n)
     {
-        int32_t j;
-        T tmp;
+        Cmp cmp;
+        int32_t j = 0;
         for (int32_t i = 1; i < n; ++i) {
-            tmp = data[i];
-            for (j = i - 1; j >= 0; --j) {
-                if (Cmp(data[j], data[i])) {
+            T tmp = data[i];
+            for (j = (int32_t)(i - 1); j >= 0; --j) {
+                if (data[j] > tmp) {
                     data[j + 1] = data[j];
                 }
                 else {
                     break;
                 }
             }
-            data[j] = tmp;
+            data[j+1] = tmp;
         }
     }
 }

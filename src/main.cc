@@ -9,6 +9,8 @@
 #include "algo_double_circular_list.hpp"
 #include "algo_merge_sort.hpp"
 #include "algo_lru_cache.hpp"
+#include "algo_quick_sort.hpp"
+#include "algo_bubble_sort.hpp"
 
 int main()
 {
@@ -45,11 +47,12 @@ int main()
     }
     printf("\n");
 
-    int d[] = {56, 23, 54, 23, 1, 67, 90, 21, 33};
-    algo::MergeSort(d, sizeof(d)/sizeof(d[0]));
-    for (int i = 0; i < sizeof(d)/sizeof(d[0]); ++i) {
-        printf("%d ", d[i]);
-    }
+    int d[] = {56, 23, 54, 23, 1, 67, 90, 21, 33, 100, 232, 23, 1232, 34,578, 12, 8976,
+               12,56, 9650, 34, 586, 123, 589, 596, 23, 12, 65, 768, 98, 0, 7, 9};
+//    algo::MergeSort(d, sizeof(d)/sizeof(d[0]));
+//    for (int i = 0; i < sizeof(d)/sizeof(d[0]); ++i) {
+//        printf("%d ", d[i]);
+//    }
     printf("\n");
 
     algo::LRUCache<std::string, int > cache(5);
@@ -70,6 +73,11 @@ int main()
         printf("one: not found .\n");
     }
 
+    algo::QuickSort(d, sizeof(d)/sizeof(d[0]));
+    // algo::InsertSort(d, sizeof(d)/sizeof(d[0]));
+    for (int i = 0; i < sizeof(d)/sizeof(d[0]); ++i) {
+        printf("%d ", d[i]);
+    }
     return 0;
 }
 /* EOF */

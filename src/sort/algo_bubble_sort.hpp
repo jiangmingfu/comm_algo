@@ -12,14 +12,14 @@
 namespace algo {
 
     // 冒泡排序
-    template <class T, class Cmp = std::greater<>>
+    template <class T, class Cmp = std::greater<T> >
     void BubbleSort(T* data, int32_t n)
     {
-        T tmp;
+        Cmp cmp;
         for (int32_t i = n-1; i >= 0; --i) {
             for (int32_t j = 1; j <= i; ++j) {
-                if (Cmp(data[j], data[j+1])) {
-                    tmp = data[j];
+                if (cmp(data[j-1] > data[j])) {
+                    T tmp = data[j];
                     data[j] = data[j - 1];
                     data[j - 1] = tmp;
                 }
