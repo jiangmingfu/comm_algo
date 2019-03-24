@@ -12,6 +12,7 @@
 #include "algo_quick_sort.hpp"
 #include "algo_bubble_sort.hpp"
 #include "algo_binary_search.hpp"
+#include "algo_circular_array.hpp"
 
 int main()
 {
@@ -97,6 +98,12 @@ int main()
     p = algo::FindLastOfLEElement(data, l, 10);
     printf("\n10: %d\n", p);
 
+    algo::CircularArray<int>  a(100);
+
+    a.Push(1);
+    int vv = 0;
+    a.Pop(vv);
+    printf("vv = %d\n", vv);
     return 0;
 }
 /* EOF */

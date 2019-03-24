@@ -8,7 +8,7 @@
 #define __ALGO_QUICK_SORT_HPP__
 
 
-#define QUICK_SORT_OPT  0
+#define QUICK_SORT_OPT  1 // 开启快速排序优化
 
 #if QUICK_SORT_OPT
     #include "algo_insert_sort.hpp"
