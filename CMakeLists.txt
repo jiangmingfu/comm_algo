@@ -11,6 +11,7 @@ include_directories(src/linklist)
 include_directories(src/sort)
 include_directories(src/queue)
 include_directories(src/cache)
+include_directories(src/search)
 include_directories(src/unittest)
 
 file(GLOB_RECURSE SOURCE_FILE_LISTS src/*.h src/*.cc src/*.hpp src/*.c src/*.cpp)

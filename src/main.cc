@@ -11,6 +11,7 @@
 #include "algo_lru_cache.hpp"
 #include "algo_quick_sort.hpp"
 #include "algo_bubble_sort.hpp"
+#include "algo_binary_search.hpp"
 
 int main()
 {
@@ -78,6 +79,24 @@ int main()
     for (int i = 0; i < sizeof(d)/sizeof(d[0]); ++i) {
         printf("%d ", d[i]);
     }
+
+    int32_t data[] = {1, 2, 5, 5, 5, 7, 10, 10, 12, 15, 16, 16};
+    int32_t l = sizeof(data)/sizeof(data[0]);
+    int p = algo::BinarySearch(data, l, 1);
+    printf("\n10: %d\n", p);
+
+    p = algo::FindFirstOfElement(data, l, 10);
+    printf("\n10: %d\n", p);
+
+    p = algo::FindLastOfElement(data, l, 10);
+    printf("\n10: %d\n", p);
+
+    p = algo::FindFirstOfGEElement(data, l, 10);
+    printf("\n10: %d\n", p);
+
+    p = algo::FindLastOfLEElement(data, l, 10);
+    printf("\n10: %d\n", p);
+
     return 0;
 }
 /* EOF */
