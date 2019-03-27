@@ -1,3 +1,9 @@
+/**
+ *
+ * @Author jiangmingfu
+ * @Date   2019.03.27
+ */
+
 #ifndef __ALGO_SKIPLIST_HPP__
 #define __ALGO_SKIPLIST_HPP__
 
