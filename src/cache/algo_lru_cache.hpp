@@ -60,7 +60,7 @@ namespace algo {
         auto it = map_.find(k);
         if (it != map_.end()) {
             if (callback_ != nullptr) {
-                // callback_(it->second->second);
+                callback_(it->second->second);
             }
 
             it->second->second = v;

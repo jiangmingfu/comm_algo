@@ -45,7 +45,6 @@ namespace algo {
 
         int32_t* count_data = (int32_t*)Allocator::AllocateMem((size_t)(max - min + 1), sizeof(int32_t));
 
-        memset(count_data, 0, sizeof(int32_t) * (max - min + 1));
         for (int32_t i = 0; i < n; ++i) {
             count_data[d[i] - min]++;
         }
