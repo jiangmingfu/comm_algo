@@ -1,3 +1,9 @@
+/*
+ *  @Author jiangmingfu
+ *  @Date  2019.03.29
+ *
+ */
+
 #ifndef __ALGO_PERMUTATIONS_HPP__
 #define __ALGO_PERMUTATIONS_HPP__
 
